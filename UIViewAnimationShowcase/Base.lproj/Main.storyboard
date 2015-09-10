@@ -1,22 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOt-Dt-nOc">
+                                <rect key="frame" x="368" y="159" width="368" height="96"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="22" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ISn-1y-pDz">
+                                <rect key="frame" x="0.0" y="0.0" width="184" height="414"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Jxr-Dc-A8r"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="uHZ-DL-8Jf"/>
+                                </connections>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="22" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VOF-cR-X4M">
+                                <rect key="frame" x="184" y="0.0" width="184" height="414"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="2kw-cu-4V3"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="1Bx-bX-ue7"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYf-EI-Beo">
+                                <rect key="frame" x="698" y="20" width="22" height="22"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VOF-cR-X4M" firstAttribute="leading" secondItem="ISn-1y-pDz" secondAttribute="trailing" id="1gu-SK-wls"/>
+                            <constraint firstItem="ISn-1y-pDz" firstAttribute="height" secondItem="VOF-cR-X4M" secondAttribute="height" id="5hH-Wm-07P"/>
+                            <constraint firstAttribute="centerY" secondItem="cOt-Dt-nOc" secondAttribute="centerY" id="6vH-7j-5P3"/>
+                            <constraint firstItem="IYf-EI-Beo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="8bb-UO-91F"/>
+                            <constraint firstItem="ISn-1y-pDz" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1:4" id="HGD-Z5-Djg"/>
+                            <constraint firstItem="ISn-1y-pDz" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="R1f-Mq-5g6"/>
+                            <constraint firstItem="cOt-Dt-nOc" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1:2" id="UFn-ha-Or7"/>
+                            <constraint firstAttribute="trailing" secondItem="cOt-Dt-nOc" secondAttribute="trailing" id="V16-me-xD6"/>
+                            <constraint firstItem="VOF-cR-X4M" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="W3Y-em-aWg"/>
+                            <constraint firstItem="ISn-1y-pDz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dEf-z1-dY9"/>
+                            <constraint firstItem="IYf-EI-Beo" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="esP-7U-tCm"/>
+                            <constraint firstItem="ISn-1y-pDz" firstAttribute="width" secondItem="VOF-cR-X4M" secondAttribute="width" id="f3i-BJ-dID"/>
+                            <constraint firstItem="ISn-1y-pDz" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="vXL-x6-gdk"/>
+                        </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="animateButton" destination="IYf-EI-Beo" id="bhc-lP-qfb"/>
+                        <outlet property="animationOptionsTableView" destination="VOF-cR-X4M" id="Noc-2c-FVa"/>
+                        <outlet property="animationTypeTableView" destination="ISn-1y-pDz" id="2g1-kt-lFc"/>
+                        <outlet property="countLabel" destination="cOt-Dt-nOc" id="j7h-FX-7s0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
