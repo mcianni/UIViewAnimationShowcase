@@ -15,4 +15,3 @@
 @property (strong, nonatomic) IBOutlet UIButton *animateButton;
 
 @end
-

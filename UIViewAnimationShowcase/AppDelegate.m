@@ -2,8 +2,7 @@
 //  AppDelegate.m
 //  UIViewAnimationShowcase
 //
-//  Created by Michael Cianni on 9/10/15.
-//  Copyright (c) 2015 mcmc. All rights reserved.
+//  Created by mcmc on 9/10/15.
 //
 
 #import "AppDelegate.h"

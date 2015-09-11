@@ -16,12 +16,13 @@
     NSArray *animations;
     NSArray *animationOptions;
     NSUInteger selectedAnimationOptions;
-    BOOL stopAnimating;
+    BOOL animating;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    selectedAnimationOptions = UIViewAnimationOptionTransitionFlipFromBottom;
+    animating = false;
+    [_animateButton setTitle:@"STOP" forState:UIControlStateSelected];
     
     animations = @[
                    @[ @"None",           @(UIViewAnimationOptionTransitionNone)          ],
@@ -51,8 +52,18 @@
                    @[ @"CurveLinear",               @(UIViewAnimationOptionCurveLinear)              ]
                        ];
     
-    [_animateButton addTarget:self action:@selector(runAnimation)  forControlEvents:UIControlEventTouchUpInside];
+    [_animateButton addTarget:self action:@selector(buttonHandler)  forControlEvents:UIControlEventTouchUpInside];
 
+}
+
+- (void)buttonHandler
+{
+    animating = !animating;
+    _animateButton.selected = animating;
+
+    if (animating) {
+        [self runAnimation];
+    }
 }
 
 - (void)runAnimation
@@ -61,7 +72,7 @@
                       duration:1.0
                        options:selectedAnimationOptions
                     animations:^{ _countLabel.text = [NSString stringWithFormat:@"%i", count++]; }
-                    completion:^(BOOL finished) { if (!stopAnimating) [self runAnimation]; }
+                    completion:^(BOOL finished) { if (animating) [self runAnimation]; }
     ];
 }
 
@@ -88,26 +99,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OptionCell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"OptionCell"];
+        cell.selectedBackgroundView = [[UIView alloc] init];
+        cell.selectedBackgroundView.backgroundColor = _animateButton.backgroundColor;
         cell.preservesSuperviewLayoutMargins = NO;
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.font = [UIFont fontWithName:@"Arial" size:10.0];
     }
     cell.textLabel.text = (tableView == _animationTypeTableView) ? animations[indexPath.row][0] : animationOptions[indexPath.row][0];
-
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[[tableView cellForRowAtIndexPath:indexPath] textLabel] setTextColor:[UIColor darkGrayColor]];
     [self calculateAnimationOptions];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[[tableView cellForRowAtIndexPath:indexPath] textLabel] setTextColor:[UIColor whiteColor]];
     [self calculateAnimationOptions];
 }
 
